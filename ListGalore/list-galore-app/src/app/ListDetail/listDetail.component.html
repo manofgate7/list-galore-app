@@ -1,0 +1,14 @@
+<div>
+	<h3>{{currentList.ListName}}</h3>
+	<span>{{currentList.ListColor}}</span>
+</div>
+<div>
+	Type: {{currentList.ListType}}
+</div>
+<table>
+	<tbody>
+		<tr *ngFor="let item of currentList.ListItems">
+			<td>{{item}}</td>
+		</tr>
+	</tbody>
+</table>
