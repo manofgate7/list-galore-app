@@ -5,10 +5,19 @@
 <div>
 	Type: {{currentList.ListType}}
 </div>
+<div>
+	<button type="button" (click)="AddToList()">Add Items</button>
+	<button type="button" (click)="RemoveFromList()">Remove Items</button>
+	<button type="button" (click)="EditFromList()">Edit Items</button>
+</div>
 <table>
 	<tbody>
 		<tr *ngFor="let item of currentList.ListItems">
-			<td>{{item}}</td>
+			<td *ngIf="isRemovingItems"><button type="button" (click)="Remove(item)">X</button></td>
+			<td *ngIf="isEditingItems"><button type="button" (click)="EditItem(item)">E</button>  </td>
+			<td *ngIf="itemSelected != item">{{item}}</td>
+			<td *ngIf="isEditingItems && itemSelected == item"><input type="text" [(ngModel)]="editedItem"/><button type="button" (click)="SaveEditItem()">Save</button></td>
 		</tr>
+		<tr *ngIf="showAddFeature"><input type="text" [(ngModel)]="newItem"/><button type="button" (click)="SaveToList()">Save</button>   </tr>
 	</tbody>
 </table>
